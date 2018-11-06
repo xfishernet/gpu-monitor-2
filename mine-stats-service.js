@@ -7,11 +7,11 @@ const accountsRoutes = require('./routes/accounts');
 
 const fetch = require("node-fetch");
 
-const Koa         = require('koa'); // ядро
-const Router      = require('koa-router'); // маршрутизация
-const bodyParser  = require('koa-bodyparser'); // парсер для POST запросов
-const serve       = require('koa-static'); // модуль, который отдает статические файлы типа index.html из заданной директории
-const logger      = require('koa-logger'); // опциональный модуль для логов сетевых запросов. Полезен при разработке.
+const Koa         = require('koa'); 
+const Router      = require('koa-router'); 
+const bodyParser  = require('koa-bodyparser');
+const serve       = require('koa-static'); 
+const logger      = require('koa-logger'); 
 const cors        = require('@koa/cors');
 
 const app         = new Koa();
@@ -23,7 +23,7 @@ app.use(logger());
 app.use(bodyParser());
 app.use(cors());
 
-app.use(router.routes()); // потом маршруты
+app.use(router.routes());
 app.use(accountsRoutes.routes());
 
 
@@ -61,14 +61,6 @@ Coin.findOne({tickerSymbol: 'ETH'}, (err, coin) => {
 
 })
 */
-
-
-
-
-
-
-
-
 
 
 const server = app.listen(3000);
