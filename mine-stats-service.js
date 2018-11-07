@@ -1,9 +1,10 @@
 
 const mongoose = require('mongoose');
 
-require('./models/accounts');
+require('./models/models');
 require('./schedulers/accounts');
 const accountsRoutes = require('./routes/accounts');
+const gpuRoutes 	 = require('./routes/gpu');
 
 const fetch = require("node-fetch");
 
@@ -13,11 +14,12 @@ const bodyParser  = require('koa-bodyparser');
 const serve       = require('koa-static'); 
 const logger      = require('koa-logger'); 
 const cors        = require('@koa/cors');
+const json 		  = require('koa-json')
 
 const app         = new Koa();
 const router      = new Router();
 
-
+app.use(json());
 app.use(serve('public'));
 app.use(logger());
 app.use(bodyParser());
@@ -25,6 +27,7 @@ app.use(cors());
 
 app.use(router.routes());
 app.use(accountsRoutes.routes());
+app.use(gpuRoutes.routes());
 
 
 
@@ -37,13 +40,17 @@ mongoose.connect('mongodb://localhost/mine-stats', { useNewUrlParser: true });
 var Rate        = mongoose.model('Rate');
 var PoolAccount = mongoose.model('PoolAccount');
 var Coin        = mongoose.model('Coin');
+var GPU	        = mongoose.model('GPU');
 
-/*
- Rate.create({
-  pair: 'USD/UAH',
-  price: 0
+
+/*GPU.create({
+  name: 'asus 1080ti',
+  worker: 'home',
+  pool: 'nanopool',
+  
 })
 */
+
 
 /*
 Coin.findOne({tickerSymbol: 'ETH'}, (err, coin) => {
@@ -64,3 +71,5 @@ Coin.findOne({tickerSymbol: 'ETH'}, (err, coin) => {
 
 
 const server = app.listen(3000);
+
+module.exports = server;

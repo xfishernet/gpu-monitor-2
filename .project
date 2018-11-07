@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
 	<name>mine-stats</name>
+<<<<<<< HEAD
 	<comment></comment>
 	<projects>
 	</projects>
@@ -12,5 +13,36 @@
 		</buildCommand>
 	</buildSpec>
 	<natures>
+=======
+	<comment>Nodeclipse Node.js/JavaScript project</comment>
+	<projects>
+	</projects>
+	<buildSpec>
+		<buildCommand>
+			<name>org.eclipse.ui.externaltools.ExternalToolBuilder</name>
+			<triggers>full,incremental,</triggers>
+			<arguments>
+				<dictionary>
+					<key>LaunchConfigHandle</key>
+					<value>&lt;project&gt;/.externalToolBuilders/com.eclipsesource.jshint.ui.builder.launch</value>
+				</dictionary>
+			</arguments>
+		</buildCommand>
+		<buildCommand>
+			<name>org.eclipse.ui.externaltools.ExternalToolBuilder</name>
+			<triggers>full,incremental,</triggers>
+			<arguments>
+				<dictionary>
+					<key>LaunchConfigHandle</key>
+					<value>&lt;project&gt;/.externalToolBuilders/org.eclipse.wst.jsdt.core.javascriptValidator.launch</value>
+				</dictionary>
+			</arguments>
+		</buildCommand>
+	</buildSpec>
+	<natures>
+		<nature>org.nodeclipse.ui.NodeNature</nature>
+		<nature>org.eclipse.wst.jsdt.core.jsNature</nature>
+		<nature>tern.eclipse.ide.core.ternnature</nature>
+>>>>>>> refs/heads/dev
 	</natures>
 </projectDescription>
