@@ -14,24 +14,58 @@ router.get('/poolAccount', async (ctx, next) => {
 
 });
 
+
+router.get('/poolAccount/:id', async (ctx, next) => {
+
+	try {
+ 		 
+		ctx.body  = await PoolAccount.findOne({_id: ctx.params.id});		  
+	  
+	} catch(err) {			
+		ctx.throw(500, err);
+	}
+	  
+});
+
+
 router.post('/poolAccount', async (ctx, next) => {
 
-    ctx.body = ctx.request.body;
+	try {
+		
+		ctx.body 	= await PoolAccount.create(ctx.request.body);		
+		
+	} catch(err) {
+		ctx.throw(500, err);
+    }
 
 });
 
-router.put('/poolAccount', async (ctx, next) => {
+router.put('/poolAccount/:id', async (ctx, next) => {
 
-  let accounts = await PoolAccount.find({});
-  ctx.body = accounts;
+	  try {
+	  		 
+		  ctx.body	 = await PoolAccount.findOneAndUpdate({_id: ctx.params.id}, ctx.request.body,  {new: true});	  
+	  
+	  } catch(err) {		
+		  ctx.throw(500, err);
+	  }
+
 
 });
 
 
-router.delete('/poolAccount', async (ctx, next) => {
-
-  let accounts = await PoolAccount.find({});
-  ctx.body = accounts;
+router.delete('/poolAccount/:id', async (ctx, next) => {
+	  
+	  try {
+		  
+		  await PoolAccount.deleteOne({_id: ctx.params.id});
+		  
+	  } catch(err) {
+			ctx.throw(500, err);
+	  }
+			
+	  
+	  ctx.body = { id: ctx.params.id } ;
 
 });
 
