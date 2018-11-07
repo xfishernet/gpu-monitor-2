@@ -1,0 +1,36 @@
+{
+  "name": "gpu-monitor-2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "mine-stats-service.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "@koa/cors": "^2.2.2",
+    "chai": "^4.2.0",
+    "chai-http": "^4.2.0",
+    "koa": "^2.6.1",
+    "koa-bodyparser": "^4.2.1",
+    "koa-json": "^2.0.2",
+    "koa-logger": "^3.2.0",
+    "koa-router": "^7.4.0",
+    "koa-static": "^5.0.0",
+    "mongoose": "^5.3.10",
+    "node-fetch": "^2.2.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "mocha --timeout 15000"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xfishernet/gpu-monitor-2.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/xfishernet/gpu-monitor-2/issues"
+  },
+  "homepage": "https://github.com/xfishernet/gpu-monitor-2#readme"
+}
