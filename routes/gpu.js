@@ -22,8 +22,7 @@ router.get('/gpu/:id', async (ctx, next) => {
 		  let gpu  = await GPU.findOne({_id: ctx.params.id});		  
 		  ctx.body = gpu ;
 	  
-	  } catch(err) {
-			
+	  } catch(err) {			
 		  ctx.throw(500, err);
 	  }
 });
@@ -50,8 +49,7 @@ router.put('/gpu/:id', async (ctx, next) => {
 	  let gpu	 = await GPU.findOneAndUpdate({_id: ctx.params.id}, ctx.request.body,  {new: true});	  
 	  ctx.body 	 = gpu;
   
-  } catch(err) {
-		
+  } catch(err) {		
 	  ctx.throw(500, err);
   }
 
