@@ -5,6 +5,7 @@ require('./models/models');
 require('./schedulers/accounts');
 const accountsRoutes = require('./routes/accounts');
 const gpuRoutes 	 = require('./routes/gpu');
+const coinRoutes 	 = require('./routes/coin');
 
 const fetch = require("node-fetch");
 
@@ -28,6 +29,7 @@ app.use(cors());
 app.use(router.routes());
 app.use(accountsRoutes.routes());
 app.use(gpuRoutes.routes());
+app.use(coinRoutes.routes());
 
 
 
