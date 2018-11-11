@@ -9,6 +9,8 @@ const coinRoutes 	 = require('./routes/coin');
 const userRoutes 	 = require('./routes/user');
 const rateRoutes 	 = require('./routes/rate');
 
+const sleep = require('koa-sleep')
+
 const fetch = require("node-fetch");
 
 const Koa         = require('koa'); 
@@ -21,6 +23,7 @@ const json 		  = require('koa-json')
 
 const app         = new Koa();
 const router      = new Router();
+
 
 app.use(json());
 app.use(serve('public'));

@@ -66,9 +66,10 @@ setInterval(async () => {
             console.log(json.data.balance);
 
             account.balance = Number(json.data.balance).toFixed(2);
+            account.speed   = Number(json.data.hashrate).toFixed(2);
 
-          }
-
+          } 
+          
           let ETH_USD_Rate = await Rate.findOne({pair: 'ETH/USD'});
           let USD_UAH_Rate = await Rate.findOne({pair: 'USD/UAH'});
 

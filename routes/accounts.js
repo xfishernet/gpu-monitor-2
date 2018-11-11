@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 const router  = new Router();
 
 var PoolAccount = mongoose.model('PoolAccount');
+var Coin 		= mongoose.model('Coin');
 
 router.get('/poolAccount', async (ctx, next) => {
 
@@ -32,6 +33,7 @@ router.post('/poolAccount', async (ctx, next) => {
 
 	try {
 		
+		ctx.request.body.coin	 = await Coin.findOne({_id: ctx.request.body.coin});
 		ctx.body 	= await PoolAccount.create(ctx.request.body);		
 		
 	} catch(err) {
@@ -44,6 +46,7 @@ router.put('/poolAccount/:id', async (ctx, next) => {
 
 	  try {
 	  		 
+		  ctx.request.body.coin	 = await Coin.findOne({_id: ctx.request.body.coin});		  		  		 
 		  ctx.body	 = await PoolAccount.findOneAndUpdate({_id: ctx.params.id}, ctx.request.body,  {new: true});	  
 	  
 	  } catch(err) {		
