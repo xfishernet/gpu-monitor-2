@@ -66,7 +66,7 @@ setInterval(async () => {
             console.log(json.data.balance);
 
             account.balance = Number(json.data.balance).toFixed(2);
-            account.speed   = Number(json.data.hashrate).toFixed(2);
+            account.speed   = Number(json.data.avgHashrate.h24).toFixed(2);
 
           } 
           
@@ -76,7 +76,7 @@ setInterval(async () => {
           account.usd = (account.balance * ETH_USD_Rate.price).toFixed(2);
           account.uah = (account.usd * USD_UAH_Rate.price).toFixed(2);
 
-          account.user = await User.findOne({login: 'xfisherbox'});
+        //  account.user = await User.findOne({login: 'xfisherbox'});
 
           account.save();
 
