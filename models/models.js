@@ -25,7 +25,8 @@ const coinSchema = new mongoose.Schema({
 
 const userSchema = new mongoose.Schema({
 
-    login: { type: String, unique: 'Такой логин уже существует'}
+    login: { type: String, unique: 'Login is exists!'},
+    email: { type: String, unique: 'Email is exists!'}
 
 });
 
