@@ -21,9 +21,16 @@ const logger      = require('koa-logger');
 const cors        = require('@koa/cors');
 const json 		  = require('koa-json')
 
+const passport 		= require('koa-passport');
+const LocalStrategy = require('passport-local');
+const JwtStrategy 	= require('passport-jwt').Strategy;
+const ExtractJwt 	= require('passport-jwt').ExtractJwt; 
+
 const app         = new Koa();
 const router      = new Router();
 
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use(json());
 app.use(serve('public'));
@@ -40,6 +47,7 @@ app.use(userRoutes.routes());
 
 
 
+
 mongoose.Promise = Promise;
 mongoose.set('debug', true);
 mongoose.set('useCreateIndex', true);
@@ -50,33 +58,8 @@ var Rate        = mongoose.model('Rate');
 var PoolAccount = mongoose.model('PoolAccount');
 var Coin        = mongoose.model('Coin');
 var GPU	        = mongoose.model('GPU');
+var User	    = mongoose.model('User');
 
-
-/*GPU.create({
-  name: 'asus 1080ti',
-  worker: 'home',
-  pool: 'nanopool',
-  
-})
-*/
-
-
-/*
-Coin.findOne({tickerSymbol: 'ETH'}, (err, coin) => {
-
-  console.log(coin.name);
-
-  PoolAccount.create({
-
-    accountAddress: 'nanopool ETH Alexander',
-    coin: coin,
-    balance: 0,
-    type: 'pool'
-
-  });
-
-})
-*/
 
 
 const server = app.listen(3000);
