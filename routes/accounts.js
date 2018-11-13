@@ -1,13 +1,14 @@
-
-const Router = require('koa-router');
-
-const mongoose = require('mongoose');
+const passport		= require('koa-passport');
+const Router	 	= require('koa-router');
+const mongoose 		= require('mongoose');
 
 const router  = new Router();
 
 var PoolAccount = mongoose.model('PoolAccount');
 var Coin 		= mongoose.model('Coin');
 var User 		= mongoose.model('User');
+
+router.use(passport.authenticate('jwt', {session:false}));
 
 router.get('/poolAccount', async (ctx, next) => {
 

@@ -1,8 +1,8 @@
-
 const mongoose = require('mongoose');
 
 require('./models/models');
 require('./schedulers/accounts');
+
 const accountsRoutes = require('./routes/accounts');
 const gpuRoutes 	 = require('./routes/gpu');
 const coinRoutes 	 = require('./routes/coin');
@@ -31,6 +31,8 @@ const router      = new Router();
 
 app.use(passport.initialize());
 app.use(passport.session());
+
+require('./core/security');
 
 app.use(json());
 app.use(serve('public'));

@@ -1,9 +1,13 @@
 
+const passport 			= require('koa-passport');
+
 const Router = require('koa-router');
 
 const mongoose = require('mongoose');
 
 const router  = new Router();
+
+router.use(passport.authenticate('jwt', {session:false}));
 
 var Rate = mongoose.model('Rate');
 

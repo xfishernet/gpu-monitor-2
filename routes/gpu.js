@@ -1,4 +1,6 @@
 
+const passport 			= require('koa-passport');
+
 const Router = require('koa-router');
 
 const mongoose = require('mongoose');
@@ -7,7 +9,9 @@ const router  = new Router();
 
 var GPU = mongoose.model('GPU');
 
-router.get('/gpu', async (ctx, next) => {
+
+
+router.get('/gpu', passport.authenticate('jwt', {session:false}), async (ctx, next) => {
 
   let gpu = await GPU.find({});
   ctx.body = gpu;
@@ -15,7 +19,7 @@ router.get('/gpu', async (ctx, next) => {
 });
 
 
-router.get('/gpu/:id', async (ctx, next) => {
+router.get('/gpu/:id', passport.authenticate('jwt', {session:false}), async (ctx, next) => {
 
 	try {
 	  		 
@@ -27,7 +31,7 @@ router.get('/gpu/:id', async (ctx, next) => {
 	  }
 });
 
-router.post('/gpu', async (ctx, next) => {
+router.post('/gpu', passport.authenticate('jwt', {session:false}), async (ctx, next) => {
 
 	try {
 					
@@ -56,7 +60,7 @@ router.put('/gpu/:id', async (ctx, next) => {
 });
 
 
-router.delete('/gpu/:id', async (ctx, next) => {
+router.delete('/gpu/:id', passport.authenticate('jwt', {session:false}), async (ctx, next) => {
 	
   
   try {
