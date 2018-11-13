@@ -23,7 +23,7 @@ describe('JWT authorization', function() {
 	it('POST /user/register', function(done) {
     			
 		let register_data = {	             
-	            login: "test_login",
+	            login: "test_jwt_login",
 	            displayName: "display-name",
 	            email: "sad8272essdf@yahoo.com",
 	            password: "dsfsdf882"
@@ -74,6 +74,7 @@ describe('JWT authorization', function() {
                 
         chai.request(server)
         .delete('/user/' + user_id)
+        .set('Authorization', token)
         .end((err, res) => {
                 res.should.have.status(200);
                 res.should.be.json;              

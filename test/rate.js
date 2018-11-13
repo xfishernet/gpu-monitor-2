@@ -11,12 +11,34 @@ chai.use(chaiHttp);
 
 describe('Rate REST API', function() {
  
-	var rate_id;
+    var rate_id, token;
+            
+    before(function(done) {
+
+         let register_data = {	             
+	            email: "test@gmail.com",
+	            password: "123"
+	          }
+                        
+            chai.request(server)
+            .post('/user/login')
+            .send(register_data)
+            .end((err, res) => {
+                res.should.have.status(200);
+                res.should.be.json;
+                token = res.body.token;
+                
+                done();
+                
+            });
+
+    });
 
 	it('GET /rate', function(done) {
     	
 		 chai.request(server)
          .get('/rate')
+         .set('Authorization', token)
          .end((err, res) => {
                res.should.have.status(200);
                res.should.be.json;
@@ -37,6 +59,7 @@ describe('Rate REST API', function() {
 		chai.request(server)
         .post('/rate')
         .send(rate)
+        .set('Authorization', token)
         .end((err, res) => {
               res.should.have.status(200);
               res.should.be.json;
@@ -51,6 +74,7 @@ describe('Rate REST API', function() {
 				
 		chai.request(server)
         .get('/rate/' + rate_id)
+        .set('Authorization', token)
         .end((err, res) => {
               res.should.have.status(200);
               res.should.be.json;
@@ -70,6 +94,7 @@ describe('Rate REST API', function() {
 		
 		chai.request(server)
         .put('/rate/' + rate_id)
+        .set('Authorization', token)
         .send(rate)
         .end((err, res) => {
               res.should.have.status(200);
@@ -87,6 +112,7 @@ describe('Rate REST API', function() {
     				
 		chai.request(server)
         .delete('/rate/' + rate_id)
+        .set('Authorization', token)
         .end((err, res) => {
               res.should.have.status(200);
               res.should.be.json;              

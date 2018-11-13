@@ -11,12 +11,34 @@ chai.use(chaiHttp);
 
 describe('User REST API', function() {
  
-	var user_id;
+    var user_id, token;
+    
+    before(function(done) {
+
+        let register_data = {	             
+	            email: "test@gmail.com",
+	            password: "123"
+	          }
+                        
+            chai.request(server)
+            .post('/user/login')
+            .send(register_data)
+            .end((err, res) => {
+                res.should.have.status(200);
+                res.should.be.json;
+                token = res.body.token;
+                
+                done();
+                
+            });
+
+    });
 
 	it('GET /user', function(done) {
     	
 		 chai.request(server)
          .get('/user')
+         .set('Authorization', token)
          .end((err, res) => {
                res.should.have.status(200);
                res.should.be.json;
@@ -36,6 +58,7 @@ describe('User REST API', function() {
 		
 		chai.request(server)
         .post('/user')
+        .set('Authorization', token)
         .send(user)
         .end((err, res) => {
               res.should.have.status(200);
@@ -51,6 +74,7 @@ describe('User REST API', function() {
 				
 		chai.request(server)
         .get('/user/' + user_id)
+        .set('Authorization', token)
         .end((err, res) => {
               res.should.have.status(200);
               res.should.be.json;
@@ -70,6 +94,7 @@ describe('User REST API', function() {
 		
 		chai.request(server)
         .put('/user/' + user_id)
+        .set('Authorization', token)
         .send(user)
         .end((err, res) => {
               res.should.have.status(200);
@@ -87,6 +112,7 @@ describe('User REST API', function() {
     				
 		chai.request(server)
         .delete('/user/' + user_id)
+        .set('Authorization', token)
         .end((err, res) => {
               res.should.have.status(200);
               res.should.be.json;              

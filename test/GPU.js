@@ -11,12 +11,34 @@ chai.use(chaiHttp);
 
 describe('GPU REST API', function() {
  
-	var gpu_id;
+    var gpu_id, token;
+    
+    before(function(done) {
+
+        let register_data = {	             
+	            email: "test@gmail.com",
+	            password: "123"
+	          }
+                        
+            chai.request(server)
+            .post('/user/login')
+            .send(register_data)
+            .end((err, res) => {
+                res.should.have.status(200);
+                res.should.be.json;
+                token = res.body.token;
+                
+                done();
+                
+            });
+
+    });
 
 	it('GET /GPU', function(done) {
     	
 		 chai.request(server)
          .get('/GPU')
+         .set('Authorization', token)
          .end((err, res) => {
                res.should.have.status(200);
                res.should.be.json;
@@ -38,6 +60,7 @@ describe('GPU REST API', function() {
 		
 		chai.request(server)
         .post('/GPU')
+        .set('Authorization', token)
         .send(gpu)
         .end((err, res) => {
               res.should.have.status(200);
@@ -53,6 +76,7 @@ describe('GPU REST API', function() {
 				
 		chai.request(server)
         .get('/GPU/' + gpu_id)
+        .set('Authorization', token)
         .end((err, res) => {
               res.should.have.status(200);
               res.should.be.json;
@@ -72,6 +96,7 @@ describe('GPU REST API', function() {
 		
 		chai.request(server)
         .put('/GPU/' + gpu_id)
+        .set('Authorization', token)
         .send(gpu)
         .end((err, res) => {
               res.should.have.status(200);
@@ -92,6 +117,7 @@ describe('GPU REST API', function() {
     				
 		chai.request(server)
         .delete('/GPU/' + gpu_id)
+        .set('Authorization', token)
         .end((err, res) => {
               res.should.have.status(200);
               res.should.be.json;              

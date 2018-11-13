@@ -11,12 +11,34 @@ chai.use(chaiHttp);
 
 describe('poolAccount REST API', function() {
  
-	var account_id;
+    var account_id, token;
+    
+    before(function(done) {
+
+        let register_data = {	             
+	            email: "test@gmail.com",
+	            password: "123"
+	          }
+                        
+            chai.request(server)
+            .post('/user/login')
+            .send(register_data)
+            .end((err, res) => {
+                res.should.have.status(200);
+                res.should.be.json;
+                token = res.body.token;
+                
+                done();
+                
+            });
+
+    });
 
 	it('GET /poolAccount', function(done) {
     	
 		 chai.request(server)
          .get('/poolAccount')
+         .set('Authorization', token)
          .end((err, res) => {
                res.should.have.status(200);
                res.should.be.json;
@@ -38,6 +60,7 @@ describe('poolAccount REST API', function() {
 		
 		chai.request(server)
         .post('/poolAccount')
+        .set('Authorization', token)
         .send(account)
         .end((err, res) => {
               res.should.have.status(200);
@@ -53,6 +76,7 @@ describe('poolAccount REST API', function() {
 				
 		chai.request(server)
         .get('/poolAccount/' + account_id)
+        .set('Authorization', token)
         .end((err, res) => {
               res.should.have.status(200);
               res.should.be.json;
@@ -72,6 +96,7 @@ describe('poolAccount REST API', function() {
 		
 		chai.request(server)
         .put('/poolAccount/' + account_id)
+        .set('Authorization', token)
         .send(account)
         .end((err, res) => {
               res.should.have.status(200);
@@ -90,6 +115,7 @@ describe('poolAccount REST API', function() {
     				
 		chai.request(server)
         .delete('/poolAccount/' + account_id)
+        .set('Authorization', token)
         .end((err, res) => {
               res.should.have.status(200);
               res.should.be.json;              

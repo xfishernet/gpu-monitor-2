@@ -11,12 +11,34 @@ chai.use(chaiHttp);
 
 describe('Coin REST API', function() {
  
-	var coin_id;
+    var coin_id, token;
+    
+    before(function(done) {
+
+        let register_data = {	             
+	            email: "test@gmail.com",
+	            password: "123"
+	          }
+                        
+            chai.request(server)
+            .post('/user/login')
+            .send(register_data)
+            .end((err, res) => {
+                res.should.have.status(200);
+                res.should.be.json;
+                token = res.body.token;
+                
+                done();
+                
+            });
+
+    });
 
 	it('GET /coin', function(done) {
     	
 		 chai.request(server)
          .get('/coin')
+         .set('Authorization', token)
          .end((err, res) => {
                res.should.have.status(200);
                res.should.be.json;
@@ -37,6 +59,7 @@ describe('Coin REST API', function() {
 		
 		chai.request(server)
         .post('/coin')
+        .set('Authorization', token)
         .send(account)
         .end((err, res) => {
               res.should.have.status(200);
@@ -52,6 +75,7 @@ describe('Coin REST API', function() {
 				
 		chai.request(server)
         .get('/coin/' + coin_id)
+        .set('Authorization', token)
         .end((err, res) => {
               res.should.have.status(200);
               res.should.be.json;
@@ -71,6 +95,7 @@ describe('Coin REST API', function() {
 		
 		chai.request(server)
         .put('/coin/' + coin_id)
+        .set('Authorization', token)
         .send(coin)
         .end((err, res) => {
               res.should.have.status(200);
@@ -89,6 +114,7 @@ describe('Coin REST API', function() {
     				
 		chai.request(server)
         .delete('/coin/' + coin_id)
+        .set('Authorization', token)
         .end((err, res) => {
               res.should.have.status(200);
               res.should.be.json;              
