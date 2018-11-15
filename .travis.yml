@@ -17,7 +17,7 @@ before_script:
 
 deploy:
   provider: heroku
-  app: "mine-stats"
+  app: mine-stats
   api_key:
-    secure: "918914a4-2816-4db6-a756-d86039199430"
+    secure: 918914a4-2816-4db6-a756-d86039199430
 
