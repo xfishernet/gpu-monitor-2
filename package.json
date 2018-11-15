@@ -31,7 +31,8 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "mocha --timeout 15000 --exit"
+    "test": "mocha --timeout 15000 --exit",
+    "start": "node mine-stats-service.js"
   },
   "repository": {
     "type": "git",
