@@ -17,7 +17,7 @@ before_script:
 
 deploy:
   provider: heroku
-  app: "mine-stats"
+  app: "miningmonitor"
   api_key:
     secure: "f20280cf-296c-4c7f-bcc3-ffbdfee42354"
 
