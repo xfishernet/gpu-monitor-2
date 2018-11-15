@@ -13,3 +13,11 @@ services: mongodb
 before_script:
 
 - mongorestore --db mine-stats init-data/mine-stats
+
+
+deploy:
+  provider: heroku
+  app: "mine-stats"
+  api_key:
+    secure: "918914a4-2816-4db6-a756-d86039199430"
+
