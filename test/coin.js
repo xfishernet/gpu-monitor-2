@@ -34,6 +34,8 @@ describe('Coin REST API', function() {
 
     });
 
+
+
 	it('GET /coin', function(done) {
     	
 		 chai.request(server)

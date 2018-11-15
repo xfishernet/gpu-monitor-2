@@ -31,7 +31,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "mocha --timeout 15000"
+    "test": "mocha --timeout 15000 --exit"
   },
   "repository": {
     "type": "git",
