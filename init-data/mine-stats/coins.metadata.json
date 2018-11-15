@@ -1,0 +1,1 @@
+{"options":{},"indexes":[{"v":2,"key":{"_id":1},"name":"_id_","ns":"mine-stats.coins"},{"v":2,"unique":true,"key":{"name":1},"name":"name_1","ns":"mine-stats.coins","background":true},{"v":2,"unique":true,"key":{"tickerSymbol":1},"name":"tickerSymbol_1","ns":"mine-stats.coins","background":true}],"uuid":"e706cb0deef74b7798a425917b1dce84"}

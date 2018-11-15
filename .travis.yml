@@ -9,3 +9,7 @@ branches:
     - master
 
 services: mongodb
+
+before_script:
+
+- mongorestore --db mine-stats init-data/mine-stats

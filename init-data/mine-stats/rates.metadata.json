@@ -1,0 +1,1 @@
+{"options":{},"indexes":[{"v":2,"key":{"_id":1},"name":"_id_","ns":"mine-stats.rates"},{"v":2,"unique":true,"key":{"pair":1},"name":"pair_1","ns":"mine-stats.rates","background":true}],"uuid":"982f35884137421ea62731fe89743e56"}

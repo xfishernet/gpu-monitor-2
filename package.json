@@ -19,9 +19,12 @@
     "koa-router": "^7.4.0",
     "koa-sleep": "^0.1.0",
     "koa-static": "^5.0.0",
+    "migrate": "^1.6.2",
     "mocha": "^5.2.0",
     "mocha-minimalist-reporter": "^1.1.0",
+    "mongodb-migrate": "^2.0.2",
     "mongoose": "^5.3.11",
+    "mongoose-data-seed": "^1.0.7",
     "node-fetch": "^2.2.1",
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0"
