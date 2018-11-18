@@ -1,28 +1,7 @@
 const mongoose = require('mongoose');
 
+
 const crypto = require('crypto');
-
-const GPUSchema = new mongoose.Schema({
-
-	name: { type: String},    
-	worker: { type: String},
-	pool: { type: String},
-	temperature: Number,
-	speed: Number,
-	fan: Number
-	
-}, {
-  timestamps: true
-});
-
-	
-const coinSchema = new mongoose.Schema({
-
-    name: { type: String, unique: 'Такое имя уже существует'},
-    tickerSymbol: { type: String, unique: 'Такое имя уже существует'},
-    exchangeRate: Number
-
-});
 
 const userSchema = new mongoose.Schema({
 
@@ -58,6 +37,30 @@ userSchema.methods.checkPassword = function (password) {
   return crypto.pbkdf2Sync(password, this.salt, 1, 128, 'sha1') == this.passwordHash;
 };
 
+
+const GPUSchema = new mongoose.Schema({
+
+	name: { type: String},    
+	worker: { type: String},
+	pool: { type: String},
+	temperature: Number,
+	speed: Number,
+	fan: Number
+	
+}, {
+  timestamps: true
+});
+
+	
+const coinSchema = new mongoose.Schema({
+
+    name: { type: String, unique: 'Такое имя уже существует'},
+    tickerSymbol: { type: String, unique: 'Такое имя уже существует'},
+    exchangeRate: Number
+
+});
+
+
 const rateSchema = new mongoose.Schema({
 
     pair: { type: String, unique: 'Такая пара уже существует'},
@@ -89,9 +92,9 @@ const poolAccountSchema = new mongoose.Schema({
   timestamps: true
 });
 
-mongoose.model('User', userSchema);
+
 mongoose.model('Coin', coinSchema);
 mongoose.model('PoolAccount', poolAccountSchema);
 mongoose.model('Rate', rateSchema);
 mongoose.model('GPU', GPUSchema);
-
+mongoose.model('User', userSchema);
