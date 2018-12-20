@@ -39,7 +39,7 @@
   },
   "scripts": {
     "test": "mocha --timeout 15000 --exit",
-    "start": "node mine-stats-service.js",
+    "start": "node app.js",
     "build": "babel . --ignore node_modules build -d build/"
   },
   "repository": {
